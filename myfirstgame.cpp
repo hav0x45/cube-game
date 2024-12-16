@@ -1,4 +1,9 @@
 #define SDL_MAIN_HANDLED
+#define VK_W 0x57
+#define VK_A 0x41
+#define VK_S 0x53
+#define VK_D 0x44
+
 #include <iostream>
 #include <Windows.h>
 #include "include/SDL.h"
@@ -29,14 +34,39 @@ int main() {
     // Peli loopin muuttuja
     bool running = true;
 
+
     // Peli looppi
     while (running == true) {
 
         // Katso painetaanko välilyöntiä
         if (GetAsyncKeyState(VK_SPACE)) {
-            
-            // Vähennä yksi piste suorakulmion y koordinaatista
+
+            // Vähennä yksi piste kuution y:n arvosta
             rect.y--;
+        }
+
+        if (GetAsyncKeyState(VK_W)) {
+
+            // Vähennä yksi piste kuution y:n arvosta
+            rect.y--;
+        }
+
+        if (GetAsyncKeyState(VK_A)) {
+            
+            // Vähennä yksi piste kuution x:n arvosta
+            rect.x--;
+        } 
+
+        if (GetAsyncKeyState(VK_S)) {
+
+            // Lisää yksi piste kuution y:n arvoon
+            rect.y++;
+        } 
+
+        if (GetAsyncKeyState(VK_D)) {
+
+            // Lisää yksi piste kuution x:n arvoon
+            rect.x++;
         }
 
         // Aseta renderöijän väri
@@ -69,6 +99,6 @@ int main() {
     // Quittaa ohjelmasta
     SDL_Quit();
 
-    // Ohjelma ajettiin onnistuneesti!
+    // Kerro käyttöjärjestelmälle että ohjelma suoritettiin onnistuneesti.
     return 0;
 }
