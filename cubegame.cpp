@@ -34,51 +34,81 @@ int main() {
     // Peli loopin muuttuja
     bool running = true;
 
+    int i = 1;
+
+    // Aseta renderöijän väri mustaksi
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+    // Renderöi tyhjä ruutu
+    SDL_RenderClear(renderer);
+
+    // Aseta renderöijän väri punaiseksi
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
     // Peli looppi
     while (running == true) {
 
+        /*
         // Katso painetaanko välilyöntiä
         if (GetAsyncKeyState(VK_SPACE)) {
 
-            // Vähennä yksi piste kuution y:n arvosta
+            // Vähennä yksi piste kuution y koordinaatista
             rect.y--;
         }
+        */
+
 
         if (GetAsyncKeyState(VK_W)) {
 
-            // Vähennä yksi piste kuution y:n arvosta
+            // Vähennä yksi piste kuution y koordinaatista
             rect.y--;
         }
 
         if (GetAsyncKeyState(VK_A)) {
             
-            // Vähennä yksi piste kuution x:n arvosta
+            // Vähennä yksi piste kuution x koordinaatista
             rect.x--;
         } 
 
         if (GetAsyncKeyState(VK_S)) {
 
-            // Lisää yksi piste kuution y:n arvoon
+            // Lisää yksi piste kuution y koordinaattiin
             rect.y++;
         } 
 
         if (GetAsyncKeyState(VK_D)) {
 
-            // Lisää yksi piste kuution x:n arvoon
+            // Lisää yksi piste kuution x koordinaattiin
             rect.x++;
         }
+        
+        if (GetAsyncKeyState(VK_SPACE)) {
 
-        // Aseta renderöijän väri
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        
-        // Renderöi tyhjä ruutu
-        SDL_RenderClear(renderer);
-        
-        // Aseta renderöijän väri
-        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-        
-        // Renderöi suorakulmio tai jotain sellaista
+            if (i == 1) {
+                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+                SDL_RenderFillRect(renderer, &rect);
+            }
+            
+            if (i == 2) {
+                SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+                SDL_RenderFillRect(renderer, &rect);
+            }
+            
+            if (i == 3) {
+                SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+                SDL_RenderFillRect(renderer, &rect);
+            }
+
+            i++;
+
+            if (i > 3) {
+                i = 1;
+            }
+
+            SDL_Delay(10);
+        }
+
+        // Renderöi suorakulmio
         SDL_RenderFillRect(renderer, &rect);
         
         // Renderöi ruutu
